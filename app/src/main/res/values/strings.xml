@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">TicTacToe</string>
+
+    <!-- Menu Activity -->
+    <string name="field_item_desc">Field item</string>
+    <string name="title_activity_menu">MenuActivity</string>
+
+    <!-- Game Activity -->
+    <string name="alert_dialog_title">Warning</string>
+    <string name="restart_btn_txt">Restart</string>
+</resources>
