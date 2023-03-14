@@ -16,6 +16,8 @@
     <string name="return_to_menu_alert_dialog_message" translatable="true">
         Are you sure you want to return to menu?</string>
 
+    <string name="toast_win_txt" translatable="true">wins</string>
+
     <string name="player_name_tv_txt" translatable="false">Player\'s name</string>
     <string name="player_score_tv_txt" translatable="false">0</string>
     <string name="restart_btn_txt" translatable="true">Restart</string>

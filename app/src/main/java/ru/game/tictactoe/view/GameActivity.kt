@@ -95,7 +95,8 @@ class GameActivity : AppCompatActivity() {
                         if (game.isFinished()) {
                             Toast.makeText(
                                 this,
-                                game.winnerPlayer!!.getName() + " wins", Toast.LENGTH_SHORT
+                                game.winnerPlayer!!.getName() + " " +
+                                        getString(R.string.toast_win_txt), Toast.LENGTH_SHORT
                             ).show()
                             binding.player1Info.getFragment<PlayerFragment>().updatePlayerScoreTv()
                             binding.player2Info.getFragment<PlayerFragment>().updatePlayerScoreTv()
