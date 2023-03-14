@@ -12,6 +12,7 @@
         Вы уверены, что хотите вернуться в меню?</string>
 
     <string name="toast_win_txt">побидил</string>
+    <string name="toast_draw_txt">Ничья</string>
 
     <string name="restart_btn_txt">Начать заново</string>
 

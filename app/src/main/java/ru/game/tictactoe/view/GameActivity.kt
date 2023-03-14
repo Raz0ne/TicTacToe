@@ -89,18 +89,8 @@ class GameActivity : AppCompatActivity() {
                 buttons[i][j] = button
                 button.setOnClickListener {
                     if (game.field[i, j].player == null && !game.isFinished()) {
-                        game.makeMove(i, j)
-                        button.setImageResource(game.players[game.curPlayerIdx].getMark())
-
-                        if (game.isFinished()) {
-                            Toast.makeText(
-                                this,
-                                game.winnerPlayer!!.getName() + " " +
-                                        getString(R.string.toast_win_txt), Toast.LENGTH_SHORT
-                            ).show()
-                            binding.player1Info.getFragment<PlayerFragment>().updatePlayerScoreTv()
-                            binding.player2Info.getFragment<PlayerFragment>().updatePlayerScoreTv()
-                        }
+                        buttons[i][j].setImageResource(game.players[game.curPlayerIdx].markId)
+                        makeMove(i, j)
                     }
                 }
                 row.addView(button, TableRow.LayoutParams(
@@ -110,6 +100,28 @@ class GameActivity : AppCompatActivity() {
             }
             binding.field.addView(row, TableLayout.LayoutParams(
                 TableLayout.LayoutParams.WRAP_CONTENT, TableLayout.LayoutParams.WRAP_CONTENT ))
+        }
+    }
+
+    private fun makeMove(row: Int, col: Int) {
+        game.makeMove(row, col)
+
+        if (game.isFinished()) {
+            if (game.isDraw)
+                Toast.makeText(
+                    this, getString(R.string.toast_draw_txt),
+                    Toast.LENGTH_SHORT).show()
+            else {
+                Toast.makeText(
+                    this,
+                    game.winnerPlayer!!.name + " " +
+                            getString(R.string.toast_win_txt), Toast.LENGTH_SHORT
+                ).show()
+                binding.player1Info.getFragment<PlayerFragment>()
+                    .updatePlayerScoreTv()
+                binding.player2Info.getFragment<PlayerFragment>()
+                    .updatePlayerScoreTv()
+            }
         }
     }
 

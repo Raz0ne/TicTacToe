@@ -17,6 +17,7 @@
         Are you sure you want to return to menu?</string>
 
     <string name="toast_win_txt" translatable="true">wins</string>
+    <string name="toast_draw_txt" translatable="true">Draw</string>
 
     <string name="player_name_tv_txt" translatable="false">Player\'s name</string>
     <string name="player_score_tv_txt" translatable="false">0</string>
