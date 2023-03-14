@@ -1,42 +1,100 @@
 package ru.game.tictactoe
 
-class Game(private val players: Array<Player>) {
-    private val height = 3
-    private val width = 3
-    private val squareCount = height * width
-    private var field = Array(height) { Array(width) { Square() } }
-    private var squaresFilledCount = 0
-    private var curPlayerIdx = 0
+class Game(val players: Array<Player>) {
+    var curPlayerIdx = 0
+    var field = Field(3, 3)
+    private val countToWin = 3
     private var started = false
-    private var ended = false
-
-    fun getField(): Array<Array<Square>> { return field }
+    private var finished = false
+    private var winnerPlayer: Player? = null
 
     fun makeMove(y: Int, x: Int) {
-        field[y][x].setPlayer(players[curPlayerIdx])
-        squaresFilledCount++
+        field[y, x].player = players[curPlayerIdx]
         started = true
 
-        curPlayerIdx += 1
+        curPlayerIdx++
         if (curPlayerIdx == players.size)
             curPlayerIdx = 0
+
+        if (field.isFilled())
+            finish()
+
+        winnerPlayer = checkWinner()
+        if (winnerPlayer != null) {
+            winnerPlayer!!.increaseScore()
+            finish()
+        }
     }
 
     fun isStarted(): Boolean { return started }
+    private fun finish() { finished = true }
 
-    fun isFilled(): Boolean { return squaresFilledCount == squareCount }
-
-    fun end() { ended = true }
-
-    fun isEnded(): Boolean { return ended }
+    fun isFinished(): Boolean { return finished }
 
     fun restart() {
         started = false
-        ended = false
-        field = Array(height) { Array(width) { Square() } }
-        squaresFilledCount = 0
+        finished = false
+        field.refresh()
 
         players.reverse()
         curPlayerIdx = 0
+    }
+
+    private fun checkWinner(): Player? {
+        var currPlayer: Player? = null
+        var lastPlayer: Player?
+        var successCounter: Int
+
+        for (i in 0 until field.rows) {
+            lastPlayer = null
+            successCounter = 1
+            for (j in 0 until field.cols) {
+                currPlayer = field[i, j].player
+                if (currPlayer == lastPlayer && currPlayer != null)
+                    successCounter++
+                lastPlayer = currPlayer
+            }
+
+            if (successCounter == countToWin)
+                return currPlayer
+        }
+
+        for (j in 0 until field.cols) {
+            lastPlayer = null
+            successCounter = 1
+            for (i in 0 until field.rows) {
+                currPlayer = field[i, j].player
+                if (currPlayer == lastPlayer && currPlayer != null)
+                    successCounter++
+                lastPlayer = currPlayer
+            }
+
+            if (successCounter == countToWin)
+                return currPlayer
+        }
+
+        lastPlayer = null
+        successCounter = 1
+        for (i in 0 until field.rows) {
+            currPlayer = field[i, i].player
+            if (currPlayer == lastPlayer && currPlayer != null)
+                successCounter++
+            lastPlayer = currPlayer
+        }
+        if (successCounter == countToWin)
+            return currPlayer
+
+        lastPlayer = null
+        successCounter = 1
+        for (i in 0 until field.rows) {
+            currPlayer = field[i, field.cols - i - 1].player
+            if (currPlayer == lastPlayer && currPlayer != null)
+                successCounter++
+            lastPlayer = currPlayer
+        }
+        if (successCounter == countToWin)
+            return currPlayer
+
+        return null
     }
 }

@@ -9,10 +9,10 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/Theme.TicTacToe"
+        android:theme="@style/Theme.TicTacToe.NoActionBar"
         tools:targetApi="31" >
         <activity
-            android:name=".view.MenuActivity"
+            android:name="ru.game.tictactoe.view.MenuActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
