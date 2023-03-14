@@ -4,12 +4,10 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import ru.game.tictactoe.R
 import ru.game.tictactoe.databinding.ActivityMenuBinding
 
 class MenuActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMenuBinding
-    private lateinit var intent: Intent
 
     override fun onCreate(savedInstanceState: Bundle?) {
         Log.d("Menu_Activity", "Activity is creating...")

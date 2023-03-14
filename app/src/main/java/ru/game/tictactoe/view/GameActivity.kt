@@ -5,10 +5,10 @@ import android.util.Log
 import android.widget.ImageButton
 import android.widget.TableLayout
 import android.widget.TableRow
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.button.MaterialButton
 import ru.game.tictactoe.Game
 import ru.game.tictactoe.Player
 import ru.game.tictactoe.R
@@ -26,16 +26,14 @@ class GameActivity : AppCompatActivity() {
         binding = ActivityGameBinding.inflate(layoutInflater)
         val playersNames = arrayOf(
             intent.getStringExtra("player1Name")!!,
-            intent.getStringExtra("player2Name")!!,
-        )
+            intent.getStringExtra("player2Name")!!)
 
         game = Game(arrayOf(
             Player(if (playersNames[0] != "") playersNames[0] else "X", R.drawable.heart),
             Player(if (playersNames[1] != "") playersNames[1] else "O", R.drawable.star)))
 
-
-        //binding.player1Info.getFragment<PlayerFragment>().setPlayerVm(game.players[0])
-        //binding.player2Info.getFragment<PlayerFragment>().setPlayerVm(game.players[1])
+        binding.player1Info.getFragment<PlayerFragment>().setPlayerVm(game.players[0])
+        binding.player2Info.getFragment<PlayerFragment>().setPlayerVm(game.players[1])
 
         binding.backBtn.setOnClickListener {
             val builder = AlertDialog.Builder(this)
@@ -63,17 +61,19 @@ class GameActivity : AppCompatActivity() {
 
         buildGameField()
 
-        onBackPressedDispatcher.addCallback(this, object: OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                val builder = AlertDialog.Builder(applicationContext)
-                builder.setTitle(R.string.return_to_menu_alert_dialog_title)
-                builder.setMessage(R.string.return_to_menu_alert_dialog_message)
-                builder.setPositiveButton(android.R.string.ok) { _, _ -> finish() }
-                builder.setNegativeButton(android.R.string.cancel) { _, _ -> }
-                val alertDialog = builder.create()
-                alertDialog.show()
+        onBackPressedDispatcher.addCallback(this, 
+            object: OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    val builder = AlertDialog.Builder(applicationContext)
+                    builder.setTitle(R.string.return_to_menu_alert_dialog_title)
+                    builder.setMessage(R.string.return_to_menu_alert_dialog_message)
+                    builder.setPositiveButton(android.R.string.ok) { _, _ -> finish() }
+                    builder.setNegativeButton(android.R.string.cancel) { _, _ -> }
+                    val alertDialog = builder.create()
+                    alertDialog.show()
+                }
             }
-        })
+        )
 
         setContentView(binding.root)
         Log.d("Game_Activity", "Activity is created")
@@ -91,6 +91,15 @@ class GameActivity : AppCompatActivity() {
                     if (game.field[i, j].player == null && !game.isFinished()) {
                         game.makeMove(i, j)
                         button.setImageResource(game.players[game.curPlayerIdx].getMark())
+
+                        if (game.isFinished()) {
+                            Toast.makeText(
+                                this,
+                                game.winnerPlayer!!.getName() + " wins", Toast.LENGTH_SHORT
+                            ).show()
+                            binding.player1Info.getFragment<PlayerFragment>().updatePlayerScoreTv()
+                            binding.player2Info.getFragment<PlayerFragment>().updatePlayerScoreTv()
+                        }
                     }
                 }
                 row.addView(button, TableRow.LayoutParams(

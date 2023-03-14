@@ -12,7 +12,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="128dp"
         android:layout_height="32dp"
-        tools:context="">
+        tools:context="ru.game.tictactoe.view.PlayerFragment">
 
         <TextView
             android:id="@+id/player_name_tv"

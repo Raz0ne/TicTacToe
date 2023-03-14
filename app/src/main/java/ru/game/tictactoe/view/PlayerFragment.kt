@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import ru.game.tictactoe.Player
 import ru.game.tictactoe.R
 import ru.game.tictactoe.databinding.FragmentPlayerInfoBinding
@@ -16,7 +17,7 @@ class PlayerFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?): View {
-        binding = DataBindingUtil.inflate<FragmentPlayerInfoBinding?>(inflater,
+        binding = DataBindingUtil.inflate<FragmentPlayerInfoBinding>(inflater,
             R.layout.fragment_player_info, container, false)
             .apply {
                 lifecycleOwner = viewLifecycleOwner
@@ -27,4 +28,6 @@ class PlayerFragment : Fragment() {
     }
 
     fun setPlayerVm(player: Player) { playerVM = player }
+
+    fun updatePlayerScoreTv() { binding.playerScoreTv.text = playerVM.score.toString() }
 }

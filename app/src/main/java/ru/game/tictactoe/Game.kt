@@ -3,10 +3,10 @@ package ru.game.tictactoe
 class Game(val players: Array<Player>) {
     var curPlayerIdx = 0
     var field = Field(3, 3)
+    var winnerPlayer: Player? = null
     private val countToWin = 3
     private var started = false
     private var finished = false
-    private var winnerPlayer: Player? = null
 
     fun makeMove(y: Int, x: Int) {
         field[y, x].player = players[curPlayerIdx]

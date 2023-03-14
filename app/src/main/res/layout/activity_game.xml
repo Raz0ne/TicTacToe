@@ -46,7 +46,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
-        <!--<androidx.fragment.app.FragmentContainerView
+        <androidx.fragment.app.FragmentContainerView
             android:id="@+id/player1_info"
             android:name="ru.game.tictactoe.view.PlayerFragment"
             android:layout_width="wrap_content"
@@ -64,7 +64,7 @@
             app:layout_constraintStart_toEndOf="@id/restart_game_btn"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />-->
+            app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
