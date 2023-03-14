@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import ru.game.tictactoe.Player
@@ -29,4 +30,12 @@ class PlayerFragment : Fragment() {
     fun setPlayerVm(player: Player) { playerVM = player }
 
     fun updatePlayerScoreTv() { binding.playerScoreTv.text = playerVM.score.toString() }
+
+    fun select() {
+        binding.playerNameTv.setTextColor(ContextCompat.getColor(activity!!, R.color.green))
+    }
+
+    fun unselect() {
+        binding.playerNameTv.setTextColor(ContextCompat.getColor(activity!!, R.color.gray))
+    }
 }
