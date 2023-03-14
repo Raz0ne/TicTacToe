@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Крестики-колики</string>
+
+    <!-- Game Activity -->
+    <string name="restart_alert_dialog_title">Начать заново</string>
+    <string name="restart_alert_dialog_message">
+        Вы уверены, что хотите начать игру заново?</string>
+
+    <string name="return_to_menu_alert_dialog_title">Вернуться в меню</string>
+    <string name="return_to_menu_alert_dialog_message">
+        Вы уверены, что хотите вернуться в меню?</string>
+
+    <string name="restart_btn_txt">Начать заново</string>
+</resources>
