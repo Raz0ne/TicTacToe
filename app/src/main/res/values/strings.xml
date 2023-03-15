@@ -4,6 +4,7 @@
     <!-- Menu Activity -->
     <string name="title_activity_menu" translatable="false">MenuActivity</string>
 
+    <string name="start_game_btn_txt" translatable="true">Play</string>
     <string name="player1_name_et_hint" translatable="false">Player1 name</string>
     <string name="player2_name_et_hint" translatable="false">Player2 name</string>
 
@@ -18,7 +19,7 @@
 
     <string name="toast_win_txt" translatable="true">wins</string>
     <string name="toast_draw_txt" translatable="true">Draw</string>
-
+    
     <string name="player_name_tv_txt" translatable="false">Player\'s name</string>
     <string name="player_score_tv_txt" translatable="false">0</string>
     <string name="restart_btn_txt" translatable="true">Restart</string>

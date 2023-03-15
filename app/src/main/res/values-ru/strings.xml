@@ -2,6 +2,9 @@
 <resources>
     <string name="app_name">Крестики-нолики</string>
 
+    <!-- Menu Activity -->
+    <string name="start_game_btn_txt">Играть</string>
+
     <!-- Game Activity -->
     <string name="restart_alert_dialog_title">Начать заново</string>
     <string name="restart_alert_dialog_message">

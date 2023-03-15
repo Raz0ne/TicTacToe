@@ -46,7 +46,7 @@ class GameActivity : AppCompatActivity() {
         }
 
         binding.restartGameBtn.setOnClickListener {
-            if (game.isFinished() || !game.isStarted())
+            if (game.finished || !game.started)
                 restart()
             else {
                 val builder = AlertDialog.Builder(this)
@@ -88,7 +88,7 @@ class GameActivity : AppCompatActivity() {
                 val button = ImageButton(this)
                 buttons[i][j] = button
                 button.setOnClickListener {
-                    if (game.field[i, j].player == null && !game.isFinished()) {
+                    if (game.field[i, j].player == null && !game.finished) {
                         buttons[i][j].setImageResource(game.players[game.curPlayerIdx].markId)
                         makeMove(i, j)
                     }
@@ -106,7 +106,7 @@ class GameActivity : AppCompatActivity() {
     private fun makeMove(row: Int, col: Int) {
         game.makeMove(row, col)
 
-        if (game.isFinished()) {
+        if (game.finished) {
             if (game.isDraw)
                 Toast.makeText(
                     this, getString(R.string.toast_draw_txt),

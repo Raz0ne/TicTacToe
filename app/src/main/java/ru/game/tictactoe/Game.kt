@@ -9,34 +9,28 @@ class Game(val players: Array<Player>) {
         private set
     var isDraw = false
         private set
+    var started = false
+        private set
+    var finished = false
+        private set
     private val countToWin = 3
-    private var started = false
-    private var finished = false
 
-    fun makeMove(y: Int, x: Int) {
-        field[y, x].player = players[curPlayerIdx]
+    fun makeMove(row: Int, col: Int) {
+        field[row, col].player = players[curPlayerIdx]
         started = true
 
         curPlayerIdx++
         if (curPlayerIdx == players.size)
             curPlayerIdx = 0
 
-        if (field.isFilled())
-            finish()
-
         winnerPlayer = checkWinner()
         if (winnerPlayer != null) {
             winnerPlayer!!.increaseScore()
-            finish()
+            finished = true
         }
         else if (isDraw)
-            finish()
+            finished = true
     }
-
-    fun isStarted(): Boolean { return started }
-    private fun finish() { finished = true }
-
-    fun isFinished(): Boolean { return finished }
 
     fun restart() {
         started = false
@@ -49,6 +43,11 @@ class Game(val players: Array<Player>) {
     }
 
     private fun checkWinner(): Player? {
+        if (field.isFilled()) {
+            isDraw = true
+            return null
+        }
+
         var currPlayer: Player? = null
         var lastPlayer: Player?
         var successCounter: Int
